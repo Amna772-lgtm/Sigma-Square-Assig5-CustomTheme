@@ -31,5 +31,7 @@ get_header();
 </main>
 
 <?php
-get_footer();
+get_template_part('template-parts/footer-main'); // First footer
+get_footer(); // Default footer
 ?>
+

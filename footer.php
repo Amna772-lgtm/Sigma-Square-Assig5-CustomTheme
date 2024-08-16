@@ -1,4 +1,4 @@
-<!-- Footer -->
+<!-- Footer for copyright -->
 <footer class="site-footer">
     <div class="container">
         <hr class="footer-line">

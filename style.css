@@ -204,3 +204,64 @@ body {
 .icon i {
     color: #ffffff; 
 }
+
+/* Main Footer styling */
+.main-footer {
+    background: #ffffff;
+    color: #000000;
+    padding: 10px 0;
+    text-align: left;
+    margin-left: 250px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around; 
+    align-items: center; 
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5px;
+}
+
+.footer-column {
+    width: 45%; 
+    text-align: left;
+}
+
+.footer-column h2 {
+    margin-bottom: 15px;
+    color: rgb(0, 0, 0);
+}
+
+.footer-column p {
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 1.6;
+    font-weight: normal;
+}
+
+.social-icons {
+    display: flex;
+    gap: 10px;
+}
+
+.social-icons a {
+    color: #000000;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.social-icons a:hover {
+    color: rgb(231, 62, 43);
+}
+
+.read-more-button {
+    display: inline-block; 
+    color: rgb(231, 62, 43); 
+    text-decoration: none; 
+}
+
+.email {
+    color: rgb(231, 62, 43);
+}
+
