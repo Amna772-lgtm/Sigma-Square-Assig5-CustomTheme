@@ -20,18 +20,17 @@ get_header();
                 </div>
             <?php }
            
-            the_content(); // Display the page content.
         endwhile;
         ?>
 
         <!-- Include the feature-showcase template part -->
         <?php get_template_part('template-parts/feature-showcase'); ?>
+        <?php get_template_part('template-parts/design-showcase'); ?>
 
     </div>
 </main>
 
 <?php
-get_template_part('template-parts/footer-main'); // First footer
 get_footer(); // Default footer
 ?>
 
