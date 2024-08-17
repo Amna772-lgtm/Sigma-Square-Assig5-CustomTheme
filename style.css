@@ -31,6 +31,8 @@ body {
 }
 
 .header-container {
+    margin-top: 10px;
+    margin-bottom: 8px;
     display: flex;
     justify-content: space-between; 
     align-items: center; 
@@ -324,7 +326,133 @@ body {
     border: 0;
     border-top: 1px solid #000000; 
     margin-left: -52px;
-    width: 87%; 
-    
-    
+    width: 87%;     
+}
+
+
+/*Blog page styling*/
+.blog-posts {
+    margin: 40px auto;
+    max-width: 800px;
+}
+
+.post-item {
+    margin-bottom: 40px;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    background-color: #000;
+    color: #fff;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.post-header:hover {
+    background-color: rgb(231, 62, 43);
+}
+
+.post-date-title {
+    display: flex;
+    align-items: center;
+}
+
+.post-title-separator {
+    margin: 0 10px;
+}
+
+.post-title {
+    margin: 0;
+}
+
+.post-content {
+    display: flex;
+    align-items: flex-start;
+}
+
+.post-thumbnail img {
+    width: 150px;
+    height: auto;
+    margin-right: 15px;
+}
+
+.post-excerpt {
+    flex-grow: 1;
+    font-weight: normal;
+    font-size: 15px;
+}
+
+.read-more-button {
+    display: inline-block;
+    color: rgb(231, 62, 43);
+    text-decoration: none;
+}
+
+.read-more-button:hover {
+    text-decoration: underline;
+}
+
+.post-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: normal; 
+    font-size: 14px;
+    color: #000000; 
+}
+
+.post-meta .post-author {
+    color: rgb(231, 62, 43); 
+    margin-right: 5px;
+}
+
+.post-meta .post-date {
+    margin-right: 5px;
+}
+
+.post-meta .post-comments {
+    margin-left: auto; 
+    color: rgb(231, 62, 43); 
+}
+
+.horizontal-line{
+    border-bottom: 1px solid black;
+}
+
+.blog-heading h1{
+    font-size: 48px;
+    font-weight: normal;
+    margin-bottom: auto;
+}
+
+.blog-heading .horizontal-line{
+    margin-bottom: 20px;
+}
+
+
+/*Pagination styling*/
+.pagination {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.pagination a, .pagination span {
+    display: inline-block;
+    padding: 10px 15px;
+    margin: 0 5px;
+    border: 1px solid #ddd;
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+}
+
+.pagination .current {
+    background-color: rgb(231, 62, 43); 
+    color: #fff;
+    border: 1px solid rgb(231, 62, 43);
+}
+
+.pagination i {
+    font-size: 16px; 
 }

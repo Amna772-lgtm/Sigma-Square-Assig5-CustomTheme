@@ -29,7 +29,7 @@
 <footer class="site-footer">
     <div class="container">
         <hr class="footer-line">
-        <p>&copy; <?php echo date('Y'); ?>-D'SIGNfly | Designed by <span class="author-name">Amna</span></p>
+        <p>&copy; <?php echo date('Y'); ?>-D'SIGNfly | Designed by <span class="author-name"><?php the_author(); ?></span></p>
     </div>
 </footer>
 
