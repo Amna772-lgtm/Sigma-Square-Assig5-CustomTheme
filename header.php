@@ -16,19 +16,28 @@
                 if (has_custom_logo()) {
                     the_custom_logo();
                 } else {
-                    echo '<h1>' . get_bloginfo('name') . '</h1>'; //name of blog website
+                    echo '<h1>' . get_bloginfo('name') . '</h1>';
                 }
                 ?>
             </div>
 
-            <!-- Function to display Navigation menu -->
+            <!-- Navigation menu -->
             <nav class="site-navigation">
                 <?php
                 wp_nav_menu(array(
                     'theme_location' => 'primary-menu',
-                    'menu_class' => 'main-menu', //add css class 
+                    'menu_class' => 'main-menu',
                 ));
                 ?>
+                <!-- Search form -->
+                <div class="header-search">
+                    <form role="search" method="get" class="search-form" action="<?php echo home_url('/'); ?>">
+                        <input type="search" class="search-field" value="<?php echo get_search_query(); ?>" name="s" />
+                        <button type="submit" class="search-submit">
+                            <i class="fas fa-search"></i> <!-- Font Awesome icon for the search button -->
+                        </button>
+                    </form>
+                </div>
             </nav>
         </div>
     </header>

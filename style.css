@@ -52,11 +52,10 @@ body {
 
 .main-menu {
     list-style: none;
-    margin: 0;
     padding: 0;
     display: flex; 
     align-items: center;
-    margin-right: 100px; 
+    margin-right: 10px; 
 }
 
 .main-menu li {
@@ -77,6 +76,44 @@ body {
     background-color: rgb(231, 62, 43);
     color: #ffffff;
     border-radius: 8px;
+}
+
+
+/* Styling for search form */
+.header-search {
+    display: flex;
+    align-items: center;
+    margin-left: 10px; 
+    margin-right: 100px;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+}
+
+.search-field {
+    padding: 5px;
+    border: 1px solid #000000;
+    border-radius: 5px; 
+    outline: none;
+    font-size: 14px;
+    margin: 0; 
+}
+
+.search-submit {
+    background-color: #000000; 
+    color: #ffffff; 
+    border: 1px solid #000000;
+    border-radius: 100px; 
+    padding: 5px;
+    cursor: pointer;
+    margin-left: 3px;
+}
+
+.search-submit i {
+    font-size: 16px;
+    margin: 0; 
 }
 
 
@@ -207,6 +244,7 @@ body {
     color: #ffffff; 
 }
 
+
 /* Main Footer styling */
 .main-footer {
     background: #ffffff;
@@ -267,19 +305,9 @@ body {
     color: rgb(231, 62, 43);
 }
 
-/*Design template styling*/
-.design-showcase {
+/*portfolio shortcode styling*/
+.portfolio-shortcode {
     text-align: center;
-    margin: 0;
-}
-
-
-
-
-.heading-row h2 {
-    font-size: 33px;
-    font-weight: normal;
-    margin: 0;
 }
 
 .view-all-button {
@@ -290,20 +318,31 @@ body {
     border-radius: 5px;
 }
 
-.image-grid {
+
+.heading1-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 520px;
+    margin-top: 40px;
+}
+
+.section-divider1 {
+    border: none;
+    height: 1px;
+    background-color: #000; 
+    margin-bottom: 20px;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.portfolio-grid1 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-row-gap: 7px; 
-    margin-left: 185px;
+    margin-left: 200px;
     margin-right: 185px;
-    
-}
-
-
-.grid-item img {
-    width: 300px;
-    height: 200px;
-    border-radius: 10px;
 }
 
 .footer-divider {
@@ -550,7 +589,6 @@ body {
 /*Portfolio page styling*/
 .portfolio-page {
     text-align: center;
-    margin: 0;
 }
 
 .heading-row {
@@ -558,7 +596,12 @@ body {
     justify-content: center;
     align-items: center;
     gap: 250px;
-    margin-top: 50px;
+    margin-top: 40px;
+}
+
+.heading-row h2{
+    font-weight: normal;
+    font-size: 34px;
 }
 
 .button-row {

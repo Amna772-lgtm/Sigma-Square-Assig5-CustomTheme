@@ -5,12 +5,12 @@ function wp_blog_theme_portfolio_grid($atts) {
 
     // Portfolio showcase heading section
     ?>
-    <div class="portfolio-page">
-        <div class="heading-row">
-            <h2>D'SIGN IS THE SOUL</h2>
+    <div class="portfolio-shortcode">
+        <div class="heading1-row">
+            <h1>D'SIGN IS THE SOUL</h1>
             <a href="#" class="view-all-button">View All</a>
         </div>
-        <hr class="section-divider">
+        <hr class="section-divider1">
     </div>
     <?php
 
@@ -23,7 +23,7 @@ function wp_blog_theme_portfolio_grid($atts) {
 
     // Loop through the posts and display featured images
     if ($portfolio_query->have_posts()) :
-        echo '<div class="portfolio-grid">';
+        echo '<div class="portfolio-grid1">';
         while ($portfolio_query->have_posts()) : $portfolio_query->the_post();
             ?>
             <div class="portfolio-item">
