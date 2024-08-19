@@ -6,6 +6,7 @@ register_nav_menus(
     array('primary-menu' => 'Header menu')
 );
 
+
 /**
  * function to add things in admin side of theme 
  */
@@ -16,6 +17,7 @@ function wp_blog_theme_setup()
 }
 add_action('after_setup_theme', 'wp_blog_theme_setup');
 
+
 /**
  * Enqueue the theme's stylesheet
  */
@@ -25,3 +27,20 @@ function wp_blog_theme_enqueue_styles() {
 }
 add_action('wp_enqueue_scripts', 'wp_blog_theme_enqueue_styles');
 
+
+/**
+ *Include the portfolio shortcode file
+ */
+require get_template_directory() . '/template-parts/portfolio-shortcode.php';
+
+
+/**
+ * register sidebar
+ */
+function wp_blog_theme_register_sidebars(){
+    register_sidebar(array(
+        'name'=>'Main Sidebar',
+        'id'=>'main-sidebar',
+    ));
+}
+add_action('widgets_init', 'wp_blog_theme_register_sidebars');

@@ -1,10 +1,11 @@
 <?php
 get_header();
 get_template_part('template-parts/feature-showcase');
-?>
 
+?>
 <div class="blog-posts">
     <!-- Add Heading and Horizontal Line -->
+
     <div class="blog-heading">
         <h1>LET'S BLOG</h1>
         <hr class="horizontal-line">
@@ -37,7 +38,9 @@ get_template_part('template-parts/feature-showcase');
                     </div>
                     <div class="post-meta-content">
                         <div class="post-meta">
-                            <span class="post-author">by <?php the_author(); ?></span>
+                            <span class="post-author">
+                                by <span class="author-name"><?php the_author(); ?></span>
+                            </span>
                             <span class="post-date">on <?php echo get_the_date(); ?></span>
                             <span
                                 class="post-comments"><?php comments_number('No Comments', '1 Comment', '% Comments'); ?></span>

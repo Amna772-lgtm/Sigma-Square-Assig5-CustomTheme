@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html <?php language_attributes(); ?>>
+<html>
 
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
@@ -16,17 +16,17 @@
                 if (has_custom_logo()) {
                     the_custom_logo();
                 } else {
-                    echo '<h1>' . get_bloginfo('name') . '</h1>';
+                    echo '<h1>' . get_bloginfo('name') . '</h1>'; //name of blog website
                 }
                 ?>
             </div>
 
-            <!-- Navigation -->
+            <!-- Function to display Navigation menu -->
             <nav class="site-navigation">
                 <?php
                 wp_nav_menu(array(
                     'theme_location' => 'primary-menu',
-                    'menu_class' => 'main-menu',
+                    'menu_class' => 'main-menu', //add css class 
                 ));
                 ?>
             </nav>

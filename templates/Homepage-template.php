@@ -15,17 +15,20 @@ get_header();
                     <?php the_post_thumbnail('full'); ?>
                     <div class="overlay-text">
                         <h1>Gearing up the ideas</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non urna eros.Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non urna eros.Lorem ipsum dolor sit
+                            amet, consectetur adipiscing elit.</p>
                     </div>
                 </div>
             <?php }
-           
+
         endwhile;
         ?>
-
+        
         <!-- Include the feature-showcase template part -->
         <?php get_template_part('template-parts/feature-showcase'); ?>
-        <?php get_template_part('template-parts/design-showcase'); ?>
+        
+        <!-- Portfolio section using shortcode-->
+        <?php echo do_shortcode('[portfolio_grid]'); ?>
 
     </div>
 </main>
@@ -33,4 +36,3 @@ get_header();
 <?php
 get_footer(); // Default footer
 ?>
-
