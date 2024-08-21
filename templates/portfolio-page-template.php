@@ -1,7 +1,7 @@
 <?php
 /* Template Name: Portfolio Page Template */
 
-get_header();
+get_template_part('template-parts/header');
 get_template_part('template-parts/feature-showcase');
 ?>
 <div class="portfolio-page">
@@ -60,5 +60,5 @@ get_template_part('template-parts/feature-showcase');
     </div>
 </div>
 <?php
-get_footer();
+get_template_part('template-parts/footer');
 ?>

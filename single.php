@@ -1,5 +1,5 @@
 <?php
-get_header();
+get_template_part('template-parts/header');
 ?>
 
 <div class="single-post-wrapper">
@@ -22,9 +22,8 @@ get_header();
                     <?php the_content(); ?>
                 </div>
             </div>
-            <hr class="horizontal-line">
             <div class="comments-section">
-                <?php comments_template(); ?>
+                <?php comments_template('template-parts/comments.php'); ?>
             </div>
         <?php endwhile; else: ?>
         <p><?php _e('Sorry, no posts matched your criteria.', 'wp-blog-theme'); ?></p>
@@ -32,5 +31,5 @@ get_header();
 </div>
 
 <?php
-get_footer();
+get_template_part('template-parts/footer');
 ?>

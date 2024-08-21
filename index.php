@@ -1,5 +1,5 @@
 <?php
-get_header();
+get_template_part('template-parts/header');
 get_template_part('template-parts/feature-showcase');
 
 ?>
@@ -77,5 +77,5 @@ get_template_part('template-parts/feature-showcase');
 </div>
 
 <?php
-get_footer();
+get_template_part('template-parts/footer');
 ?>

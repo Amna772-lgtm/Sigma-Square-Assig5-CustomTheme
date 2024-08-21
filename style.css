@@ -279,20 +279,44 @@ body {
     line-height: 1.6;
     font-weight: normal;
 }
-
-.social-icons {
-    display: flex;
-    gap: 10px;
+.social-icons a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 5px; 
+    color: #ffffff; 
+    transition: background-color 0.3s ease;
 }
 
-.social-icons a {
-    color: #000000;
-    font-size: 18px;
-    text-decoration: none;
+.social-icons a .fab {
+    font-size: 20px;
+    vertical-align: middle;
+}
+
+.social-icons a:nth-child(1) {
+    background-color: #3b5998; /* Facebook */
+}
+
+.social-icons a:nth-child(2) {
+    background-color: #0077b5; /* LinkedIn */
+}
+
+.social-icons a:nth-child(3) {
+    background-color: #e4405f; /* Instagram */
+}
+
+.social-icons a:nth-child(4) {
+    background-color: #bd081c; /* Pinterest */
+}
+
+.social-icons a:nth-child(5) {
+    background-color: #1da1f2; /* Twitter */
 }
 
 .social-icons a:hover {
-    color: rgb(231, 62, 43);
+    opacity: 0.9; 
 }
 
 .read-more-button {
@@ -529,7 +553,6 @@ body {
 .comment-list li {
     margin-bottom: 20px;
     border-bottom: 1px solid #ddd;
-    padding-bottom: 20px;
 }
 
 .comment-author {
@@ -583,6 +606,62 @@ body {
 .comment-form-cookies-consent input[type="checkbox"] {
     margin-right: 10px; 
     width: auto;
+}
+
+/*Comments list styling*/
+.comment-container {
+    margin-bottom: 30px;
+}
+
+.comment-meta {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-weight: normal;
+    color: black;
+    margin-bottom: 10px;
+}
+
+.comment-meta i {
+    margin-right: 10px;
+    color: #bdbdbd;
+}
+
+.comment-meta .comment-author {
+    font-weight: bold;
+    margin-right: 5px;
+    color: rgb(231, 62, 43);
+}
+
+.comment-said-on{
+    margin-right: 5px;
+}
+
+.comment-date{
+    margin-right: 5px;
+}
+
+.comment-content {
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.comment-at{
+    margin-right: 5px;
+}
+
+.comment-reply {
+    text-align: right;
+}
+
+.comment-reply a {
+    color: #bdbdbd;
+    text-decoration: none;
+}
+
+.comment-reply a i {
+    margin-right: 5px;
 }
 
 
@@ -649,4 +728,35 @@ body {
     width: 300px;
     height: 200px;
     border-radius: 10px;
+}
+
+/*Contact page styling*/
+.contact-page-content {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    height: calc(100vh - 300px); 
+    text-align: center; 
+    padding: 20px; 
+}
+
+.contact-page-content h1 {
+    font-size: 36px; 
+    color: rgb(231, 62, 43); 
+}
+
+
+/*Services page styling*/
+.service-page-content {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    height: calc(100vh - 300px); 
+    text-align: center; 
+    padding: 20px; 
+}
+
+.service-page-content h1 {
+    font-size: 36px; 
+    color: rgb(231, 62, 43); 
 }

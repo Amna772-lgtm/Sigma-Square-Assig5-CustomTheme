@@ -1,7 +1,7 @@
 <?php
 /* Template Name: Homepage Template */
 
-get_header();
+get_template_part('template-parts/header');
 ?>
 
 <main id="main-content">
@@ -34,5 +34,6 @@ get_header();
 </main>
 
 <?php
-get_footer(); // Default footer
+get_template_part('template-parts/footer');
+// Default footer
 ?>
