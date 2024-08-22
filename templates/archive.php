@@ -47,7 +47,7 @@ get_template_part('template-parts/feature-showcase');
 
         // Adjust query arguments based on archive type
         if (is_category()) {
-            $args['cat'] = get_queried_object_id();
+            $args['cat'] = get_queried_object_id(); //get id current viewed category
         } elseif (is_tag()) {
             $args['tag_id'] = get_queried_object_id();
         } elseif (is_author()) {

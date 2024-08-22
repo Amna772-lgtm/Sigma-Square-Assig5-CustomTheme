@@ -28,7 +28,7 @@ function wp_blog_theme_portfolio_grid($atts) {
             ?>
             <div class="portfolio-item">
                 <a href="<?php the_permalink(); ?>">
-                    <?php the_post_thumbnail('medium'); // Adjust size as needed ?>
+                    <?php the_post_thumbnail('medium'); ?>
                 </a>
             </div>
             <?php

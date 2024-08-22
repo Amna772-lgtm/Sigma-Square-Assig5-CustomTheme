@@ -94,8 +94,8 @@ get_template_part('template-parts/feature-showcase');
 
     <aside id="secondary" class="widget-area">
         <?php
-        if ( is_active_sidebar( 'blog-sidebar' ) ) {
-            dynamic_sidebar( 'blog-sidebar' );
+        if (is_active_sidebar('blog-sidebar')) {
+            dynamic_sidebar('blog-sidebar');
         }
         ?>
     </aside>

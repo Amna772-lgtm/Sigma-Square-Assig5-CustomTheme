@@ -18,7 +18,7 @@ get_template_part('template-parts/feature-showcase');
     <div class="portfolio-grid">
         <?php
         // Set up the query for posts with featured images
-        $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+        $paged = (get_query_var('paged')) ? get_query_var('paged') : 1; //get current page number
         $args = array(
             'posts_per_page' => 15,
             'paged' => $paged,
