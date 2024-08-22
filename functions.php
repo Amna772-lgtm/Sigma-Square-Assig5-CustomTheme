@@ -35,18 +35,6 @@ require get_template_directory() . '/template-parts/portfolio-shortcode.php';
 
 
 /**
- * register sidebar
- */
-function wp_blog_theme_register_sidebars(){
-    register_sidebar(array(
-        'name'=>'Main Sidebar',
-        'id'=>'main-sidebar',
-    ));
-}
-add_action('widgets_init', 'wp_blog_theme_register_sidebars');
-
-
-/**
  *Custom call back function for comments list
  */
 function custom_comments_format( $comment, $args, $depth ) {
@@ -88,4 +76,97 @@ function custom_comments_format( $comment, $args, $depth ) {
 		</div>
 	</li>
 	<?php
+}
+
+
+/**
+ * Function to register Blog page sidebar
+ */
+add_action( 'widgets_init', 'wp_blog_theme_sidebars' );
+function wp_blog_theme_sidebars() {
+	/* Register the 'primary' sidebar. */
+	register_sidebar(
+		array(
+			'id'            => 'blog-sidebar',
+			'name'          => __( 'Blog Sidebar' ),
+			'description'   => __( 'Blog sidebar of custom theme ' ),
+			'before_widget' => '<div id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<h3 class="widget-title">',
+			'after_title'   => '</h3>',
+		)
+	);
+
+	register_sidebar(
+		array(
+			'id'            => 'single-post-sidebar',
+			'name'          => __( 'Single Post Sidebar' ),
+			'description'   => __( 'Single post sidebar of custom theme ' ),
+			'before_widget' => '<div id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<h3 class="widget-title">',
+			'after_title'   => '</h3>',
+		)
+	);
+	
+}
+
+
+// Register the custom widget
+function wp_blog_theme_custom_portfolio_widget() {
+    register_widget('Featured_Images_Widget');
+}
+add_action('widgets_init', 'wp_blog_theme_custom_portfolio_widget');
+
+// Define the custom widget
+class Featured_Images_Widget extends WP_Widget {
+    
+    public function __construct() {
+        parent::__construct(
+            'featured_images_widget',
+            __('Featured Images Widget', 'wp-blog-theme'),
+            array('description' => __('Displays featured images of recent posts.', 'wp-blog-theme'))
+        );
+    }
+
+    // Widget front-end display
+    public function widget($args, $instance) {
+        echo $args['before_widget'];
+        
+        // Query for recent posts with featured images
+        $query_args = array(
+            'posts_per_page' => 8, // Number of posts to display
+            'meta_key' => '_thumbnail_id', // Ensure only posts with featured images are included
+        );
+        $query = new WP_Query($query_args);
+
+        if ($query->have_posts()) {
+            echo '<ul class="featured-images-widget">';
+            while ($query->have_posts()) {
+                $query->the_post();
+                ?>
+                <li class="featured-image-item">
+                    <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+                        <?php the_post_thumbnail('small'); // Adjust size as needed ?>
+                    </a>
+                </li>
+                <?php
+            }
+            echo '</ul>';
+        } else {
+            echo '<p>' . __('No featured images found.', 'wp-blog-theme') . '</p>';
+        }
+
+        // Restore original Post Data
+        wp_reset_postdata();
+        
+        echo $args['after_widget'];
+    }
+
+
+    // Update widget settings
+    public function update($new_instance, $old_instance) {
+        // Update widget settings if needed
+        return $new_instance;
+    }
 }
