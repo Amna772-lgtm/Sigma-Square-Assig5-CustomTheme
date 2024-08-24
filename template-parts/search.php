@@ -6,21 +6,12 @@ get_template_part('template-parts/feature-showcase');
 <div class="blog-page-container">
     <div class="blog-content">
         <div class="blog-heading">
-            <h1>LET'S BLOG</h1>
+            <h1><?php printf(__('Search for: %s', 'wp-blog-theme'), '<span>' . get_search_query() . '</span>'); ?></h1>
             <hr class="horizontal-line">
         </div>
         <?php
-        $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-        $args = array(
-            'post_type' => 'post',
-            'posts_per_page' => 5,
-            'paged' => $paged,
-        );
-        $query = new WP_Query($args);
-
-        if ($query->have_posts()):
-            while ($query->have_posts()):
-                $query->the_post(); ?>
+        if (have_posts()) :
+            while (have_posts()) : the_post(); ?>
                 <div class="post-item">
                     <div class="post-header">
                         <div class="post-date-title">
@@ -53,15 +44,12 @@ get_template_part('template-parts/feature-showcase');
                                     $categories = get_the_category();
                                     if (!empty($categories)) {
                                         foreach ($categories as $category) {
-                                            // Generate the category link
                                             $category_link = get_category_link($category->term_id);
-                                            // Output the category name as a clickable link
                                             echo '<a href="' . esc_url($category_link) . '" class="category-title">' . esc_html($category->name) . '</a> ';
                                         }
                                     }
                                     ?>
                                 </span>
-
                             </div>
 
                             <hr class="horizontal-line">
@@ -77,28 +65,20 @@ get_template_part('template-parts/feature-showcase');
             <div class="pagination">
                 <?php
                 echo paginate_links(array(
-                    'total' => $query->max_num_pages,
-                    'current' => $paged,  // Set the current page
-                    'format' => '?paged=%#%', // Pagination format
-                    'prev_text' => __('<i class="fas fa-chevron-left"></i>'), // Font Awesome icon for previous
-                    'next_text' => __('<i class="fas fa-chevron-right"></i>'), // Font Awesome icon for next
+                    'total' => $wp_query->max_num_pages,
+                    'current' => max(1, get_query_var('paged')),
+                    'format' => '?paged=%#%',
+                    'prev_text' => __('<i class="fas fa-chevron-left"></i>'),
+                    'next_text' => __('<i class="fas fa-chevron-right"></i>'),
                 ));
                 ?>
             </div>
-        <?php else: ?>
+        <?php else : ?>
             <p><?php _e('No posts found.', 'wp-blog-theme'); ?></p>
         <?php endif; ?>
 
         <?php wp_reset_postdata(); ?>
     </div>
-
-    <aside id="secondary" class="widget-area">
-        <?php
-        if (is_active_sidebar('blog-sidebar')) {
-            dynamic_sidebar('blog-sidebar');
-        }
-        ?>
-    </aside>
 </div>
 
 <?php

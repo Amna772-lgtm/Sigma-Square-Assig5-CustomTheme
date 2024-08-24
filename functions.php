@@ -23,7 +23,6 @@ add_action('after_setup_theme', 'wp_blog_theme_setup');
  */
 function wp_blog_theme_enqueue_styles()
 {
-	wp_enqueue_style('wp-blog-theme-style', get_stylesheet_uri());
 	wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
 }
 add_action('wp_enqueue_scripts', 'wp_blog_theme_enqueue_styles');
@@ -213,7 +212,154 @@ function wp_blog_theme_custom_templates($template)
 		}
 	}
 
+	
+	if (is_search()) {
+		$new_template = locate_template(array('template-parts/search.php'));
+		if ($new_template) {
+			return $new_template;
+		}
+	}
+
 	return $template;
 }
 add_filter('template_include', 'wp_blog_theme_custom_templates');
+
+
+/**
+ * function to add custom theme settings page
+ */
+function wp_blog_theme_add_admin_menu() {
+    // Add a new top-level menu
+    add_menu_page(
+        __('Blog Theme Settings', 'wp-blog-theme'),  // Page title
+        __('Blog Theme Settings', 'wp-blog-theme'),  // Menu title
+        'manage_options',                       // Capability
+        'wp-blog-theme-settings',               // Menu slug
+        'wp_blog_theme_settings_page',          // Function to display the page content
+        'dashicons-admin-generic',              // Icon URL or Dashicon class
+        100                                     // Position
+    );
+}
+add_action('admin_menu', 'wp_blog_theme_add_admin_menu');
+
+function wp_blog_theme_settings_page() {
+    ?>
+    <div class="wrap">
+        <h1><?php _e('Blog Theme Settings', 'wp-blog-theme'); ?></h1>
+        <form method="post" action="options.php">
+            <?php
+            settings_fields('wp_blog_theme_options');
+            do_settings_sections('wp-blog-theme-settings');
+            submit_button();
+            ?>
+        </form>
+    </div>
+    <?php
+}
+
+/**
+ * Setting Option for changing theme mode
+ */
+function wp_blog_theme_settings_init() {
+    // Register a new setting for "wp-blog-theme-settings" page
+    register_setting('wp_blog_theme_options', 'wp_blog_theme_options');
+
+    // Add a new section in the "wp-blog-theme-settings" page
+    add_settings_section(
+        'wp_blog_theme_section',                     // Section ID
+        __('General Settings', 'wp-blog-theme'),     // Title
+        'wp_blog_theme_section_callback',            // Callback function
+        'wp-blog-theme-settings'                     // Page slug
+    );
+
+    // Add the theme mode field
+    add_settings_field(
+        'wp_blog_theme_field_mode',                  // Field ID
+        __('Theme Mode', 'wp-blog-theme'),           // Label
+        'wp_blog_theme_field_mode_callback',         // Callback function
+        'wp-blog-theme-settings',                    // Page slug
+        'wp_blog_theme_section',                     // Section ID
+        array(
+            'label_for' => 'wp_blog_theme_field_mode',
+            'class' => 'wp-blog-theme-row',           // For CSS styling
+        )
+    );
+
+	// Add the font family field
+    add_settings_field(
+        'wp_blog_theme_field_font_family',            // Field ID
+        __('Font Family', 'wp-blog-theme'),           // Label
+        'wp_blog_theme_field_font_family_callback',   // Callback function
+        'wp-blog-theme-settings',                    // Page slug
+        'wp_blog_theme_section',                     // Section ID
+        array(
+            'label_for' => 'wp_blog_theme_field_font_family',
+            'class' => 'wp-blog-theme-row',           // For CSS styling
+        )
+    );
+}
+add_action('admin_init', 'wp_blog_theme_settings_init');
+
+// Callback function for the section description
+function wp_blog_theme_section_callback() {
+    echo '<p>' . __('Choose the mode for your theme.', 'wp-blog-theme') . '</p>';
+}
+
+
+// Callback function for the theme mode field
+function wp_blog_theme_field_mode_callback($args) {
+    // Get the value of the setting we've registered with register_setting()
+    $options = get_option('wp_blog_theme_options', array()); // Ensure default value as an array
+
+    // Ensure the 'mode' key exists in the array
+    $selected_mode = isset($options['mode']) ? $options['mode'] : 'light'; // Default to 'light'
+
+    ?>
+    <select id="<?php echo esc_attr($args['label_for']); ?>" name="wp_blog_theme_options[mode]">
+        <option value="light" <?php selected($selected_mode, 'light'); ?>><?php _e('Light', 'wp-blog-theme'); ?></option>
+        <option value="dark" <?php selected($selected_mode, 'dark'); ?>><?php _e('Dark', 'wp-blog-theme'); ?></option>
+    </select>
+    <?php
+}
+
+/**
+ * calback function for font settings
+ */
+function wp_blog_theme_field_font_family_callback($args) {
+    // Get the value of the setting we've registered with register_setting()
+    $options = get_option('wp_blog_theme_options', array()); // Ensure default value as an array
+
+    // Ensure the 'font_family' key exists in the array
+    $selected_font = isset($options['font_family']) ? $options['font_family'] : 'Arial'; // Default to 'Arial'
+
+    ?>
+    <select id="<?php echo esc_attr($args['label_for']); ?>" name="wp_blog_theme_options[font_family]">
+        <option value="Arial" <?php selected($selected_font, 'Arial'); ?>><?php _e('Arial', 'wp-blog-theme'); ?></option>
+        <option value="Georgia" <?php selected($selected_font, 'Georgia'); ?>><?php _e('Georgia', 'wp-blog-theme'); ?></option>
+        <option value="Courier New" <?php selected($selected_font, 'Courier New'); ?>><?php _e('Courier New', 'wp-blog-theme'); ?></option>
+    </select>
+    <?php
+}
+
+function wp_blog_theme_apply_mode() {
+    $options = get_option('wp_blog_theme_options');
+    $theme_mode = isset($options['mode']) ? $options['mode'] : 'light';
+	$font_family = isset($options['font_family']) ? $options['font_family'] : 'Arial';
+
+    if ($theme_mode === 'dark') {
+        wp_enqueue_style('wp-blog-theme-dark-mode', get_template_directory_uri() . '/assets/css/dark-mode.css');
+    } else {
+		wp_enqueue_style('wp-blog-theme-style', get_stylesheet_uri());
+    }
+
+
+	// Apply the selected font-family
+    $custom_css = "
+        body {
+            font-family: $font_family;
+        }
+    ";
+    wp_add_inline_style('wp-blog-theme-style', $custom_css);
+}
+add_action('wp_enqueue_scripts', 'wp_blog_theme_apply_mode');
 

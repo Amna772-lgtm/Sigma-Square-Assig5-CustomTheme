@@ -14,7 +14,7 @@
 
  /*Header styling*/
 body {
-    font-family: Arial, sans-serif; 
+    font-family:Georgia, 'Times New Roman', Times, serif; 
     font-weight: bold;
     margin: 0; 
 }
@@ -156,9 +156,7 @@ body {
 
 /* Styling for the featured image */
 .featured-image-container {
-    width: auto;
-    margin-top: 20px; 
-    overflow: hidden;
+    width: auto; 
     margin-bottom: -7px;
 }
 
@@ -416,6 +414,11 @@ body {
 
 .post-title {
     margin: 0;
+}
+
+.post-title a{
+    text-decoration: none;
+    color: white;
 }
 
 .post-content {

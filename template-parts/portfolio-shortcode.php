@@ -1,6 +1,7 @@
 <?php
 // Function to display the portfolio grid and create the shortcode
-function wp_blog_theme_portfolio_grid($atts) {
+function wp_blog_theme_portfolio_grid($atts)
+{
     ob_start();
 
     // Portfolio showcase heading section
@@ -8,7 +9,7 @@ function wp_blog_theme_portfolio_grid($atts) {
     <div class="portfolio-shortcode">
         <div class="heading1-row">
             <h1>D'SIGN IS THE SOUL</h1>
-            <a href="#" class="view-all-button">View All</a>
+            <a href="<?php echo get_permalink(get_page_by_path('portfolio')); ?>" class="view-all-button">View All</a>
         </div>
         <hr class="section-divider1">
     </div>
@@ -22,9 +23,10 @@ function wp_blog_theme_portfolio_grid($atts) {
     $portfolio_query = new WP_Query($args);
 
     // Loop through the posts and display featured images
-    if ($portfolio_query->have_posts()) :
+    if ($portfolio_query->have_posts()):
         echo '<div class="portfolio-grid1">';
-        while ($portfolio_query->have_posts()) : $portfolio_query->the_post();
+        while ($portfolio_query->have_posts()):
+            $portfolio_query->the_post();
             ?>
             <div class="portfolio-item">
                 <a href="<?php the_permalink(); ?>">
@@ -34,7 +36,7 @@ function wp_blog_theme_portfolio_grid($atts) {
             <?php
         endwhile;
         echo '</div>';
-    else :
+    else:
         echo '<p>No posts found.</p>';
     endif;
 
